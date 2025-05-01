@@ -1,0 +1,32 @@
+{
+  // editor
+  "diagnostics": { "inline": { "enabled": true, "update_debounce_ms": 10 } },
+  "indent_guides": { "coloring": "indent_aware" },
+  "soft_wrap": "editor_width",
+  "terminal": { "dock": "right" },
+  "theme": { "mode": "system", "light": "Github Light", "dark": "Github Dark" },
+
+  // formatting
+  "code_actions_on_format": { "source.organizeImports": true },
+  "format_on_save": "on", // not enabled by default in all langs (i.e. C)
+  "tab_size": 2,
+
+  // disable features
+  "assistant": { "version": "2", "enabled": false },
+  "features": { "edit_prediction_provider": "none" },
+  "preview_tabs": { "enabled": false },
+
+  "languages": {
+    "Typst": { "formatter": { "external": { "command": "typstyle" } } }
+
+    // Deno support (https://zed.dev/docs/languages/deno), comment this out when working in Node
+    // "TypeScript": {
+    //   "language_servers": [
+    //     "deno",
+    //     "!typescript-language-server",
+    //     "!vtsls",
+    //     "!eslint"
+    //   ]
+    // }
+  }
+}
