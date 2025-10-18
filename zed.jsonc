@@ -1,32 +1,71 @@
+// Zed config (https://zed.dev/docs/configuring-zed)
+//
+// not all ligatures work
+//   - https://github.com/zed-industries/zed/issues/12176
+//   - https://github.com/pop-os/cosmic-text/issues/378
+//
+// toml sucks, because taplo has been replaced by tombi
+//   - https://github.com/zed-industries/zed/issues/36766
+//
+
 {
   // editor
+  "auto_signature_help": true,
   "diagnostics": { "inline": { "enabled": true, "update_debounce_ms": 10 } },
+  "disable_ai": true,
   "indent_guides": { "coloring": "indent_aware" },
+  "outline_panel": { "dock": "right" },
+  "preview_tabs": { "enabled": false },
+  "project_panel": { "auto_fold_dirs": false },
   "soft_wrap": "editor_width",
   "terminal": { "dock": "right" },
-  "theme": { "mode": "system", "light": "Github Light", "dark": "Github Dark" },
+
+  // theme
+  "theme": {
+    "mode": "system",
+    "light": "Github Light",
+    "dark": "Github Dark"
+  },
+  "icon_theme": {
+    "mode": "system",
+    "light": "Colored Zed Icons Theme Light",
+    "dark": "Colored Zed Icons Theme Dark"
+  },
 
   // formatting
-  "code_actions_on_format": { "source.organizeImports": true },
+  "formatter": [{ "code_action": "source.organizeImports" }, "prettier"],
   "format_on_save": "on", // not enabled by default in all langs (i.e. C)
   "tab_size": 2,
 
-  // disable features
-  "assistant": { "version": "2", "enabled": false },
-  "features": { "edit_prediction_provider": "none" },
-  "preview_tabs": { "enabled": false },
-
+  // languages
+  "file_types": {
+    "XML": ["csproj"], // C#
+    "YAML": ["base"] // Obsidian .base files
+  },
   "languages": {
-    "Typst": { "formatter": { "external": { "command": "typstyle" } } }
+    "Typst": { "formatter": { "external": { "command": "typstyle" } } },
 
-    // Deno support (https://zed.dev/docs/languages/deno), comment this out when working in Node
-    // "TypeScript": {
-    //   "language_servers": [
-    //     "deno",
-    //     "!typescript-language-server",
-    //     "!vtsls",
-    //     "!eslint"
-    //   ]
-    // }
+    // disable eslint, tailwind, and typescript language server (using vtsls instead)
+    "HTML": { "language_servers": ["!tailwindcss-language-server", "..."] },
+    "CSS": { "language_servers": ["!tailwindcss-language-server", "..."] },
+    "Svelte": {
+      "language_servers": ["!eslint", "!tailwindcss-language-server", "..."]
+    },
+    "JavaScript": {
+      "language_servers": [
+        "!eslint",
+        "!tailwindcss-language-server",
+        "!typescript-language-server",
+        "..."
+      ]
+    },
+    "TypeScript": {
+      "language_servers": [
+        "!eslint",
+        "!tailwindcss-language-server",
+        "!typescript-language-server",
+        "..."
+      ]
+    }
   }
 }
