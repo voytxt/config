@@ -1,71 +1,48 @@
 // Zed config (https://zed.dev/docs/configuring-zed)
-//
-// not all ligatures work
-//   - https://github.com/zed-industries/zed/issues/12176
-//   - https://github.com/pop-os/cosmic-text/issues/378
-//
-// toml sucks, because taplo has been replaced by tombi
-//   - https://github.com/zed-industries/zed/issues/36766
-//
 
 {
-  // editor
   "auto_signature_help": true,
+  "buffer_font_family": "JetBrains Mono",
+  "buffer_font_weight": 500,
   "diagnostics": { "inline": { "enabled": true, "update_debounce_ms": 10 } },
   "disable_ai": true,
-  "indent_guides": { "coloring": "indent_aware" },
-  "outline_panel": { "dock": "right" },
+  "git_panel": { "tree_view": true },
+  "gutter": { "line_numbers": false },
+  "indent_guides": { "enabled": false },
+  "outline_panel": { "dock": "right", "indent_guides": { "show": "never" } },
   "preview_tabs": { "enabled": false },
-  "project_panel": { "auto_fold_dirs": false },
+  "project_panel": { "indent_guides": { "show": "never" } },
+  "show_signature_help_after_edits": true,
+  "show_wrap_guides": false,
   "soft_wrap": "editor_width",
-  "terminal": { "dock": "right" },
+  "text_rendering_mode": "grayscale",
+  "which_key": { "enabled": true, "delay_ms": 0 },
 
-  // theme
-  "theme": {
-    "mode": "system",
-    "light": "Github Light",
-    "dark": "Github Dark"
-  },
-  "icon_theme": {
-    "mode": "system",
-    "light": "Colored Zed Icons Theme Light",
-    "dark": "Colored Zed Icons Theme Dark"
-  },
+  // "inlay_hints": { "enabled": true },
+  // "sticky_scroll": { "enabled": true },
 
   // formatting
-  "formatter": [{ "code_action": "source.organizeImports" }, "prettier"],
+  // "formatter": [{ "code_action": "source.organizeImports" }, "auto"],
   "format_on_save": "on", // not enabled by default in all langs (i.e. C)
   "tab_size": 2,
 
-  // languages
-  "file_types": {
-    "XML": ["csproj"], // C#
-    "YAML": ["base"] // Obsidian .base files
+  "theme": {
+    "mode": "system",
+    "light": "Github Light",
+    "dark": "Fleet Dark",
   },
-  "languages": {
-    "Typst": { "formatter": { "external": { "command": "typstyle" } } },
 
-    // disable eslint, tailwind, and typescript language server (using vtsls instead)
-    "HTML": { "language_servers": ["!tailwindcss-language-server", "..."] },
-    "CSS": { "language_servers": ["!tailwindcss-language-server", "..."] },
-    "Svelte": {
-      "language_servers": ["!eslint", "!tailwindcss-language-server", "..."]
-    },
-    "JavaScript": {
-      "language_servers": [
-        "!eslint",
-        "!tailwindcss-language-server",
-        "!typescript-language-server",
-        "..."
-      ]
-    },
-    "TypeScript": {
-      "language_servers": [
-        "!eslint",
-        "!tailwindcss-language-server",
-        "!typescript-language-server",
-        "..."
-      ]
-    }
-  }
+  "icon_theme": {
+    "mode": "system",
+    "light": "Colored Zed Icons Theme Light",
+    "dark": "Colored Zed Icons Theme Dark",
+  },
+
+  "languages": {
+    // https://github.com/zed-industries/zed/discussions/45239
+    "Python": { "language_servers": ["ty", "!basedpyright", "..."] },
+
+    "Rust": { "tab_size": 4 },
+    "Typst": { "formatter": { "external": { "command": "typstyle" } } },
+  },
 }
